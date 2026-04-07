@@ -1,0 +1,144 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: plum;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* TEXT */
+h1 {
+  margin-top: 20px;
+  font-size: 6vw;
+}
+
+#message {
+  font-size: 4vw;
+}
+
+#score, #timer {
+  font-size: 4vw;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5vw;
+  padding: 5vw;
+  justify-items: center;
+}
+
+/* HOLE */
+.hole {
+  width: 20vw;
+  height: 90vw;
+  max-width: 80px;
+  max-height: 150px;
+  position: relative;
+  overflow: hidden; /* 🔥 critical */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* BLACK HOLE */
+.hole::before {
+  content: '';
+  position: absolute;
+  top: 55%;
+  transform: translateY(-50%);
+  width: 99%;
+  height: 7%;
+  background: rgb(255, 255, 255);
+  border-radius: 50%;
+  z-index: 2;
+}
+
+/* FRONT LIP */
+.hole::after {
+  content: '';
+  position: absolute;
+  top: 55%;
+  width: 150%;
+  height: 40%;
+  background: rgb(254, 254, 81);
+  border-bottom-left-radius: 60%;
+  border-bottom-right-radius: 60%;
+  z-index: 4;
+}
+
+/* FACE */
+.face {
+  position: absolute;
+  width: 100%;
+  max-width: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -100%;
+  opacity: 0;
+  transition: all 0.25s ease-out;
+  z-index: 3;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+/* ACTIVE FACE */
+.hole.active .face {
+  bottom: 20%;
+  opacity: 1;
+}
+
+/* HEARTS */
+.heart {
+  position: absolute;
+  bottom: -20px;
+  font-size: 20px;
+  animation: floatUp 4s linear forwards;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-600px);
+    opacity: 0;
+  }
+}
+
+/* SCREENS */
+#endScreen,
+#finalScreen {
+  display: none;
+  margin-top: 30px;
+}
+
+/* BUTTON */
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 25px;
+  background: #b57edc;
+  color: white;
+  font-size: 4vw;
+  cursor: pointer;
+}
+
+/* FINAL IMAGE */
+#photo {
+  width: 70vw;
+  max-width: 260px;
+  border-radius: 20px;
+  margin-top: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* DESKTOP OVERRIDE */
+@media (min-width: 768px) {
+  h1 { font-size: 28px; }
+  #message { font-size: 18px; }
+  #score, #timer { font-size: 18px; }
+  button { font-size: 16px; }
+}
